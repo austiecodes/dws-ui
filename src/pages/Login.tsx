@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 function Login() {
   let navigate = useNavigate();
   const handleLogin = () => {
-    navigate('/dashboard');
+    navigate('/index');
   }
 
   return (

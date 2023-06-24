@@ -5,6 +5,7 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ErrorPage from './routes/error-page.tsx'
 import Navbar from './components/NavBar.tsx'
+import Index from './pages/index.tsx'
 
 const router = createBrowserRouter( [
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter( [
   {
     path: "/dashboard",
     element: <Navbar/>
+  },
+  {
+    path: "/index",
+    element: <Index/>,
   }
 ])
 
