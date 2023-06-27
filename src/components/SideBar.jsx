@@ -1,9 +1,8 @@
 import Dropdown from "./Dropdown";
 import { BsGpuCard } from "react-icons/bs";
 
-function Sidebar(open) {
-	const sidebarClass = `fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700 `;
-	//  -translate-x-full  md:translate-x-0
+function Sidebar() {
+	const sidebarClass = `fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700`;
 	return (
 		<div>
 			<aside
@@ -11,7 +10,6 @@ function Sidebar(open) {
 				aria-label="Sidenav"
 				id="drawer-navigation"
 			>
-				{open && <p>OpenTestFlag</p>}
 				<div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
 					<ul className="space-y-2 font-medium">
 						<Dropdown

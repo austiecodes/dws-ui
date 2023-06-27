@@ -1,16 +1,17 @@
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash,check_password_hash
 from flask import Flask, request, make_response, jsonify
 import bcrypt
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, resources=r'/*')
 
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
 
-# 这是一个硬编码的用户和密码，实际开发中应从数据库中获取
 user_db = {
-    "test_user": generate_password_hash("test_password") # 这里的"testpassword"应该是用户注册时输入的密码
+    "test_user": generate_password_hash("test_password")
 }
 
 @app.route('/api/login', methods=('GET', 'POST'))
@@ -32,3 +33,17 @@ def login():
                 return make_response(jsonify(success=False, message="密码错误"), 401)
     else:
             return make_response(jsonify(success=False, message="用户不存在"), 404)
+    
+@app.route('/api/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    email = data.get('email')
+    hashed_password = data.get('password')
+    if email in user_db:
+        return make_response(jsonify(success=False, message="用户已存在"), 409)
+    else:
+        user_db[email] = {"password": hashed_password}
+        return make_response(jsonify(success=True)) 
+
+if __name__ == "__main__":
+    app.run(debug=True)
