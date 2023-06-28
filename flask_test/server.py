@@ -1,49 +1,58 @@
 from werkzeug.security import generate_password_hash,check_password_hash
-from flask import Flask, request, make_response, jsonify
+from flask import Flask, request, g, make_response, jsonify
 import bcrypt
 from flask_cors import CORS
+from data.sqlite import SQLiteDB 
 
 app = Flask(__name__)
-CORS(app, resources=r'/*')
+CORS(app)
+
+def get_db():
+    if 'db' not in g:
+        g.db = SQLiteDB(db_path="./data/database.db")
+    return g.db
+
+@app.teardown_appcontext
+def close_db(error):
+    if 'db' in g:
+        g.db.close()
 
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
 
-user_db = {
-    "test_user": generate_password_hash("test_password")
-}
-
 @app.route('/api/login', methods=('GET', 'POST'))
 def login():
     data = request.get_json()
-    user_name = data.get('email')
-    password = data.get('password')
-
-    if user_name in user_db:
-            saved_password_hash = user_db[user_name]["password"]
-            if bcrypt.checkpw(password.encode(), saved_password_hash.encode()):
-                resp = make_response(jsonify(success=True))
-                if data.get('holdlogin'):
-                    resp.set_cookie('uname', user_name, max_age=60*60*24*30)
-                else:
-                    resp.set_cookie('uname', user_name, max_age=60*60)
-                return resp
-            else:
-                return make_response(jsonify(success=False, message="密码错误"), 401)
+    user_name = data.get('username')
+    print(user_name)
+    database = get_db()
+    user_info_list = database.get_user(search_key={'username':user_name}, return_key=['password', 'salt'])
+    if user_info_list: 
+        saved_password, salt = user_info_list[0]
+        password = bcrypt.hashpw(data.get('password').encode(), salt.encode())
+        if saved_password == password.decode():
+            return make_response(jsonify(success=True, message="Login Succeed"), 200)
+        else:
+            return make_response(jsonify(success=False, message="Wrong Password"), 401)
     else:
-            return make_response(jsonify(success=False, message="用户不存在"), 404)
-    
+        return make_response(jsonify(success=False, message="User Not Found"), 404)
+
 @app.route('/api/register', methods=['POST'])
 def register():
+    database = get_db()
     data = request.get_json()
-    email = data.get('email')
+    username = data.get('username')
     hashed_password = data.get('password')
-    if email in user_db:
+    is_user_name_exists = database.get_user(search_key={'username':username})
+    if is_user_name_exists:
         return make_response(jsonify(success=False, message="用户已存在"), 409)
     else:
-        user_db[email] = {"password": hashed_password}
-        return make_response(jsonify(success=True)) 
+        salt = bcrypt.gensalt()
+        hashed_password = bcrypt.hashpw(hashed_password.encode(), salt)
+        database.insert_user(user={'username':username, 'password':hashed_password.decode(), 'salt':salt.decode()})
+        return make_response(jsonify(success=True, message="注册成功"), 200)
+    
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=9998, debug=True, threaded=True)

@@ -14,7 +14,7 @@ const Popover = ({ popoverTarget, popoverContent }) => {
 	};
 
 	return (
-		<div className="flex justify-center items-center min-h-screen">
+		<>
 			<button
 				ref={setReferenceElement}
 				onClick={togglePopover}
@@ -39,7 +39,7 @@ const Popover = ({ popoverTarget, popoverContent }) => {
 					{popoverContent}
 				</div>
 			</CSSTransition>
-		</div>
+		</>
 	);
 };
 

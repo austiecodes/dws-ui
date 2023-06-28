@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import bcrypt from "bcryptjs";
+import CryptoJS from "crypto-js";
+import Popover from "../components/PopoverButton";
 
 function Login() {
 	let navigate = useNavigate();
@@ -9,17 +10,16 @@ function Login() {
 	const handleRegister = () => {
 		setRegistering(!isRegistering);
 	};
-	const [email, setEmail] = useState("");
+	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
 	const handleLogin = async (event) => {
 		event.preventDefault();
-		const salt = bcrypt.genSaltSync(10);
-		const hashedPassword = bcrypt.hashSync(password, salt);
-		const response = await fetch("http://localhost:5000/api/login", {
+		const hashedPassword = CryptoJS.SHA256(password).toString();
+		const response = await fetch("http://127.0.0.1:9998/api/login", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ email, password: hashedPassword }),
+			body: JSON.stringify({ username, password: hashedPassword }),
 		});
 
 		const data = await response.json();
@@ -32,17 +32,16 @@ function Login() {
 
 	const confirmRegister = async (event) => {
 		event.preventDefault();
-		const salt = bcrypt.genSaltSync(10);
-		const hashedPassword = bcrypt.hashSync(password, salt);
 		const isPasswordSame = password === confirmedPassword;
 		if (isPasswordSame) {
-			const request = await fetch("http://localhost:5000/api/register", {
+			const hashedPassword = CryptoJS.SHA256(password).toString();
+			const response = await fetch("http://127.0.0.1:9998/api/register", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ email, password: hashedPassword }),
+				body: JSON.stringify({ username, password: hashedPassword }),
 			});
 
-			if (request.ok) {
+			if (response.ok) {
 				console.log("ok");
 				navigate("/dashboard");
 			} else {
@@ -71,21 +70,21 @@ function Login() {
 				<form className="space-y-6" action="#" method="POST">
 					<div>
 						<label
-							htmlFor="email"
+							htmlFor="text"
 							className="block text-sm font-medium leading-6 text-gray-900 text-left"
 						>
-							Email address
+							Username
 						</label>
 						<div className="mt-2">
 							<input
-								id="email"
-								name="email"
-								type="email"
-								autoComplete="email"
+								id="username"
+								name="username"
+								type="text"
+								autoComplete="text"
 								required
 								className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-								onChange={(e) => setEmail(e.target.value)}
-								placeholder={isRegistering ? "jeffdean@google.com" : ""}
+								onChange={(e) => setUsername(e.target.value)}
+								placeholder={isRegistering ? "jeffdean" : ""}
 							/>
 						</div>
 					</div>
