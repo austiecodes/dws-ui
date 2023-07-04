@@ -8,6 +8,7 @@ import Index from "./pages/Index.jsx";
 import Register from "./pages/Register.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Accordion from "./components/TestComponent.jsx";
+import GPUInfo from "./pages/GPUInfo.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -26,6 +27,12 @@ const router = createBrowserRouter([
 	{
 		path: "/dashboard",
 		element: <Dashboard />,
+		children: [
+			{
+				path: "/gpuinfo",
+				element: <GPUInfo />,
+			},
+		],
 	},
 	{
 		path: "/test",

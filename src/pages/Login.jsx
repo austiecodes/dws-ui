@@ -16,10 +16,11 @@ function Login() {
 	const handleLogin = async (event) => {
 		event.preventDefault();
 		const hashedPassword = CryptoJS.SHA256(password).toString();
-		const response = await fetch("http://127.0.0.1:9998/api/login", {
+		const response = await fetch("http://127.0.0.1:9998/api/auth/login", {
 			method: "POST",
+			mode: "cors",
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ username, password: hashedPassword }),
+			body: JSON.stringify({ username: username, password: hashedPassword }),
 		});
 
 		const data = await response.json();
@@ -35,10 +36,11 @@ function Login() {
 		const isPasswordSame = password === confirmedPassword;
 		if (isPasswordSame) {
 			const hashedPassword = CryptoJS.SHA256(password).toString();
-			const response = await fetch("http://127.0.0.1:9998/api/register", {
+			const response = await fetch("http://127.0.0.1:9998/api/auth/register", {
 				method: "POST",
+				mode: "cors",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ username, password: hashedPassword }),
+				body: JSON.stringify({ username: username, password: hashedPassword }),
 			});
 
 			if (response.ok) {

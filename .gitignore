@@ -22,5 +22,8 @@ dist-ssr
 *.sln
 *.sw?
 
+
 # python
 __pycache__/
+.vscode
+flask_test/data/database.db
