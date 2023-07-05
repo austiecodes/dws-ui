@@ -7,8 +7,11 @@ import ErrorPage from "./routes/error-page.jsx";
 import Index from "./pages/Index.jsx";
 import Register from "./pages/Register.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
-import Accordion from "./components/TestComponent.jsx";
+import ProgressCard from "./components/ProgressCard.jsx";
 import GPUInfo from "./pages/GPUInfo.jsx";
+import UserItem from "./components/UserItem.jsx";
+import AllUsers from "./pages/AllUsers.jsx";
+import Sample from "./pages/SampleDashboard.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -30,13 +33,17 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: "gpuinfo",
-				element: <GPUInfo />,
+				element: <Sample />,
 			},
+			{
+				path: "allusers",
+				element : <AllUsers/>,
+			}
 		],
 	},
 	{
 		path: "/test",
-		element: <GPUInfo />,
+		element: < Sample/>,
 	},
 ]);
 
