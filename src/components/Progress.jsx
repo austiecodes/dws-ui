@@ -1,4 +1,4 @@
-const Progress = (percents) => {
+const Progress = ({percents}) => {
 	return (
 		<div>
 			<div class="flex justify-between mb-1">
@@ -10,7 +10,7 @@ const Progress = (percents) => {
 				</span>
 			</div>
 			<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-				<div class="bg-blue-600 h-2.5 rounded-full" style="width: 45%"></div>
+			<div className="bg-blue-600 h-2.5 rounded-full" style={{width: `${percents}%`}}></div>
 			</div>
 		</div>
 	);

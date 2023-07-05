@@ -29,14 +29,14 @@ const router = createBrowserRouter([
 		element: <Dashboard />,
 		children: [
 			{
-				path: "/gpuinfo",
+				path: "gpuinfo",
 				element: <GPUInfo />,
 			},
 		],
 	},
 	{
 		path: "/test",
-		element: <Accordion />,
+		element: <GPUInfo />,
 	},
 ]);
 
