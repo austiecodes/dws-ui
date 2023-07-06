@@ -1,4 +1,5 @@
 import SearchBar from "../components/SearchBar"
+import UserList from "../components/UsersList";
 
 
 const AllUsers = () => {
@@ -23,6 +24,7 @@ const AllUsers = () => {
                 </a>
             </div>
       </div>
+      {/* <UserList/> */}
     
     </>
   )

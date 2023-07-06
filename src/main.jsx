@@ -11,7 +11,7 @@ import ProgressCard from "./components/ProgressCard.jsx";
 import GPUInfo from "./pages/GPUInfo.jsx";
 import UserItem from "./components/UserItem.jsx";
 import AllUsers from "./pages/AllUsers.jsx";
-import Sample from "./pages/SampleDashboard.jsx";
+import GPUCard from "./components/GPUCard.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: "gpuinfo",
-				element: <Sample />,
+				element: <GPUCard />,
 			},
 			{
 				path: "allusers",
@@ -41,10 +41,10 @@ const router = createBrowserRouter([
 			}
 		],
 	},
-	{
-		path: "/test",
-		element: < Sample/>,
-	},
+	// {
+	// 	path: "/test",
+	// 	element: < GPU/>,
+	// },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
