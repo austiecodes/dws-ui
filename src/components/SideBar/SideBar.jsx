@@ -1,6 +1,7 @@
-import Dropdown from "./Dropdown";
+import Dropdown from "../Dropdown/Dropdown";
 import { BsGpuCard } from "react-icons/bs";
 import { Link, Outlet } from "react-router-dom";
+import {BiSolidUserRectangle} from "react-icons/bi";
 
 function Sidebar() {
 	const sidebarClass = `fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700`;
@@ -74,6 +75,20 @@ function Sidebar() {
 									<path d="M3 5a2 2 0 012-2h1a1 1 0 010 2H5v7h2l1 2h4l1-2h2V5h-1a1 1 0 110-2h1a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
 								</svg>
 								<span className="flex-1 ml-3 whitespace-nowrap">Users</span>
+								{/* <span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
+									3
+								</span> */}
+							</Link>
+						</li>
+
+
+						<li>
+							<Link
+								to="/dashboard/allusers"
+								className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+							>
+								<BiSolidUserRectangle className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" />
+								<span className="flex-1 ml-3 whitespace-nowrap">Admin</span>
 								<span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
 									3
 								</span>

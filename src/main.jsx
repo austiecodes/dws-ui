@@ -7,11 +7,9 @@ import ErrorPage from "./routes/error-page.jsx";
 import Index from "./pages/Index.jsx";
 import Register from "./pages/Register.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
-import ProgressCard from "./components/ProgressCard.jsx";
 import GPUInfo from "./pages/GPUInfo.jsx";
-import UserItem from "./components/UserItem.jsx";
 import AllUsers from "./pages/AllUsers.jsx";
-import GPUCard from "./components/GPUCard.jsx";
+import Toggle from "./components/Toggle.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -33,18 +31,22 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: "gpuinfo",
-				element: <GPUCard />,
+				element: <GPUInfo/>,
 			},
 			{
 				path: "allusers",
 				element : <AllUsers/>,
-			}
+			},
+			// {
+			// 	path: "containers",
+			// 	element: <Containers/>,
+			// }
 		],
 	},
-	// {
-	// 	path: "/test",
-	// 	element: < GPU/>,
-	// },
+	{
+		path: "/test",
+		element: < Toggle/>,
+	},
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

@@ -1,5 +1,5 @@
 import React from "react";
-import PersonalDropdown from "./PersonalDropdown";
+import PersonalDropdown from "./Dropdown/PersonalDropdown";
 
 const NavBar = () => {
 	return (

@@ -1,7 +1,9 @@
-const UserList = () => {
+import UserItem from "./UserItem";
+
+const UserList = ({Users}) => {
 	return (
 		<>
-			<table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-600">
+			<table class="min-w-full mt-4 divide-y divide-gray-200 table-fixed dark:divide-gray-600">
 				{/* Table Headers */}
 				<thead class="bg-gray-100 dark:bg-gray-700">
 					<tr>
@@ -28,6 +30,12 @@ const UserList = () => {
 							scope="col"
 							class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
 						>
+							Email
+						</th>
+						<th
+							scope="col"
+							class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
+						>
 							Phone
 						</th>
 						<th
@@ -47,6 +55,14 @@ const UserList = () => {
 						</th>
 					</tr>
 				</thead>
+				<tbody>
+					{
+						Users.map((user) => 
+							<UserItem user={user} key={user.id}/>
+						)
+					}
+					{/* <UserItem /> */}
+				</tbody>
 			</table>
 		</>
 	);

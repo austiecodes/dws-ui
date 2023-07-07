@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
-import Popover from "../components/PopoverButton";
 
 function Login() {
 	let navigate = useNavigate();

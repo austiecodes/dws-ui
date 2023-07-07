@@ -1,5 +1,5 @@
 import NavBar from "../components/NavBar";
-import Sidebar from "../components/SideBar";
+import Sidebar from "../components/SideBar/SideBar";
 
 function Index() {
   return (
