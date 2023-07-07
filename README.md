@@ -1,12 +1,21 @@
-## 项目依赖
+# DWS-UI
+
+DWS-UI is UI for [DockerWebServer](https://github.com/peng-1998/DockerWebServer)
 
 
-React + tailwindCSS
+## Dependencies
 
-包管理器: yarn
-样式库: Flowbite 
+React and yarn for sure. Also:
+
+[TailwindCSS](https://tailwindcss.com/docs/installation)
+
+[Flowbite](https://flowbite.com/docs)
 
 
-## 项目结构
-src-components 基础组建文件夹
-pages 页面文件夹
+## Folders
+
+`src-components:` Basic components
+
+`src-pages:` Pages, of couse.
+
+`src-routes:` We put login and error page here.

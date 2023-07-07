@@ -4,8 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./routes/error-page.jsx";
-import Index from "./pages/Index.jsx";
-import Register from "./pages/Register.jsx";
+import Register from "./routes/Register.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import GPUInfo from "./pages/GPUInfo.jsx";
 import AllUsers from "./pages/AllUsers.jsx";
@@ -16,10 +15,6 @@ const router = createBrowserRouter([
 		path: "/",
 		element: <App />,
 		errorElement: <ErrorPage />,
-	},
-	{
-		path: "/index",
-		element: <Index />,
 	},
 	{
 		path: "/register",
