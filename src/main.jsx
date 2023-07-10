@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./routes/error-page.jsx";
 import Register from "./routes/Register.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
-import GPUInfo from "./pages/GPUInfo.jsx";
+import MachineInfo from "./pages/MachineStatus.jsx";
 import AllUsers from "./pages/AllUsers.jsx";
 import Toggle from "./components/Toggle.jsx";
 
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: "gpuinfo",
-				element: <GPUInfo/>,
+				element: <MachineInfo/>,
 			},
 			{
 				path: "allusers",

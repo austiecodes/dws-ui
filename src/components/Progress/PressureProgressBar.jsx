@@ -20,7 +20,7 @@ const PressureBar = ({ title, percentage, subtitle }) => {
 
 			<div className="w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700">
 				<div
-					className={`h-6 rounded-full dark:bg-blue-500 text-center text-white ${pressure(
+					className={`h-6 rounded-full text-center text-white ${pressure(
 						percentage
 					)}`}
 					style={{ width: `${percentage}%` }}

@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 function Dashboard() {
 	return (
-		<div className="min-w-fit">
+		<div className="min-w-min">
 			<NavBar />
 			<Sidebar />
 			<div className="p-4 pt-5 sm:ml-64">
