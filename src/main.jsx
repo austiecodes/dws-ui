@@ -3,12 +3,11 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ErrorPage from "./routes/error-page.jsx";
-import Register from "./routes/Register.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
-import MachineInfo from "./pages/MachineStatus.jsx";
-import AllUsers from "./pages/AllUsers.jsx";
-import Toggle from "./components/Toggle.jsx";
+import ErrorPage from "./routes/ErrorPage.jsx";
+import Dashboard from "./routes/Dashboard.jsx";
+import Machines from "./pages/Machines.jsx";
+import AllUsers from "./pages/Admin/AllUsers.jsx";
+import Toggle from "./components/Base/Toggle.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -17,16 +16,12 @@ const router = createBrowserRouter([
 		errorElement: <ErrorPage />,
 	},
 	{
-		path: "/register",
-		element: <Register />,
-	},
-	{
 		path: "/dashboard",
 		element: <Dashboard />,
 		children: [
 			{
 				path: "gpuinfo",
-				element: <MachineInfo/>,
+				element: <Machines/>,
 			},
 			{
 				path: "allusers",

@@ -1,4 +1,4 @@
-import Toggle from "./Toggle";
+import Toggle from "../../Base/Toggle";
 import { Button, Card } from "flowbite-react";
 
 const FeatureToggle = () => {

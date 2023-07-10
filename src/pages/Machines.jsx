@@ -1,17 +1,9 @@
-import GPUCard from "../components/GPU/GPUCard";
 import { useEffect, useState } from "react";
+import MachineInfoGroup from "../components/Machines/MachineInfoGroup";
 
-const MachineInfo = () => {
-	const gpuInfo = {
-		gpuNumber: "0",
-		gpuName: "RTX 3090",
-		utilization: 45,
-		memory: "60",
-	};
-
-	// const [machineInfo, setMachineInfo] = useState([]);
-	const [machineInfo, setMachineInfo] = useState([]);
-	const [eachMachineData, setEachMachineData] = useState([]);
+const Machines = () => {
+	const [allMachineInfo, setAllMachineInfo] = useState([]);
+	const intervalTime = 5000;
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -32,29 +24,30 @@ const MachineInfo = () => {
 					throw new Error("Network response was not ok");
 				}
 				const data = await response.json();
-				setMachineInfo(data);
+				setAllMachineInfo(data);
+				console.log(data);
 			} catch (error) {
 				console.error(error);
 			}
 		};
 		fetchData();
+		const interval = setInterval(() => {
+			fetchData();
+		}, intervalTime);
+
+		return () => clearInterval(interval);
 	}, []);
-
-	// useEffect(() => {
-
-	// }, [machineInfo]);
-
 
 	return (
 		<div className="flex-row">
 			<div>
-				{machineInfo.map((machine, index) => (
-					<GPUCard gpuInfo={machine.gpu} key={index} />
-				))}
-				{/* // <GPUCard gpuInfo={gpuData} /> */}
+				{ allMachineInfo.map((machineInfo, index) => (
+					<MachineInfoGroup machineIndex={index} machineInfo={machineInfo} key={index} />
+				))
+				}				
 			</div>
 		</div>
 	);
 };
 
-export default MachineInfo;
+export default Machines;

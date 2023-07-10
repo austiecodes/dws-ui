@@ -1,5 +1,5 @@
-import SearchBar from "../components/SearchBar";
-import UserList from "../components/UserList/UsersList";
+import SearchBar from "../../components/SearchBar";
+import UserList from "../../components/Admin/UserList/UsersList";
 
 const AllUsers = () => {
 	// const [users, setUsers] = useState([]);

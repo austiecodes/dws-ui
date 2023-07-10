@@ -24,7 +24,7 @@ function Login() {
 
 		const data = await response.json();
 		if (response.ok) {
-			navigate("/index");
+			navigate("/dashboard");
 		} else {
 			alert(data.message);
 		}

@@ -35,7 +35,7 @@ const CircleProgressCard = ({ title, percents, subtitle }) => {
 		<>
 			<div className="py-20 px-5 w-2/4 min-w-fit">
 				<div className="grid grid-cols-1 gap-1s">
-					<div className="flex items-center justify-content mx-auto flex-wrap max-w-md px-10 bg-white shadow-xl rounded-2xl h-20">
+					<div className="flex items-center justify-content mx-auto flex-wrap max-w-md px-10 bg-white shadow-xl rounded-2xl h-20 border">
 						<div className="flex items-center justify-center -m-6 overflow-hidden bg-white rounded-full">
 							<svg
 								className="w-32 h-32 transform translate-x-1 translate-y-1"
@@ -53,7 +53,8 @@ const CircleProgressCard = ({ title, percents, subtitle }) => {
 									cy="60"
 								/>
 								<circle
-									className={`${pressure(percents)}`}
+								
+									className={`${pressure(percents)} `}
 									stroke="currentColor"
 									strokeLinecap="round"
 									{...circleStyle}
