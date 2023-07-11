@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 const CircleProgressCard = ({ title, percents, subtitle }) => {
 	const radius = 50;
@@ -17,11 +17,11 @@ const CircleProgressCard = ({ title, percents, subtitle }) => {
 		cx: "60",
 		cy: "60",
 		strokeDasharray: dashArray,
-    strokeDashoffset: dashOffset,
+		strokeDashoffset: dashOffset,
 		strokeLinecap: "round",
 	};
 
-  const pressure = (percents) => {
+	const pressure = (percents) => {
 		if (percents < 51) {
 			return "text-green-500";
 		} else if (percents >= 51 && percents < 80) {
@@ -41,7 +41,7 @@ const CircleProgressCard = ({ title, percents, subtitle }) => {
 								className="w-32 h-32 transform translate-x-1 translate-y-1"
 								// x-cloak
 								aria-hidden="true"
-                style={{ transform: "rotate(90deg)" }}
+								style={{ transform: "rotate(90deg)" }}
 							>
 								<circle
 									className="text-gray-300"
@@ -53,16 +53,16 @@ const CircleProgressCard = ({ title, percents, subtitle }) => {
 									cy="60"
 								/>
 								<circle
-								
 									className={`${pressure(percents)} `}
 									stroke="currentColor"
 									strokeLinecap="round"
 									{...circleStyle}
 								/>
 							</svg>
-							<span
-								className="absolute text-2xl text-blue-700 ml-2"
-							>{' '}{percents}%</span>
+							<span className="absolute text-2xl text-blue-700 ml-2">
+								{" "}
+								{percents}%
+							</span>
 						</div>
 						<p className="ml-10 font-medium text-gray-600 sm:text-xl">
 							{title}
@@ -76,6 +76,5 @@ const CircleProgressCard = ({ title, percents, subtitle }) => {
 		</>
 	);
 };
-
 
 export default CircleProgressCard;

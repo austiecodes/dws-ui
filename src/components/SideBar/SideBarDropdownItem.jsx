@@ -1,7 +1,8 @@
-import { ReactElement, useState } from "react";
+import { useState } from "react";
 import React from "react";
+import SideBarSubItem from "./SideBarSubItem";
 
-function Dropdown({ mainText, dropdownItems, icon }) {
+function SideBarDropdownItem({ title, dropdownItems, icon }) {
 	const [isOpen, setIsOpen] = useState(false);
 	const handleToggle = () => {
 		setIsOpen(!isOpen);
@@ -24,15 +25,9 @@ function Dropdown({ mainText, dropdownItems, icon }) {
 			>
 				{IconStyled && IconStyled}
 
-				<span
-					className="flex-1 ml-3 text-left whitespace-nowrap"
-					// sidebar-toggle-item
-				>
-					{mainText}
-				</span>
+				<span className="flex-1 ml-3 text-left whitespace-nowrap">{title}</span>
 				{dropdownItems && (
 					<svg
-						// sidebar-toggle-item
 						className="w-6 h-6"
 						fill="currentColor"
 						viewBox="0 0 20 20"
@@ -54,14 +49,14 @@ function Dropdown({ mainText, dropdownItems, icon }) {
 					className={isOpen ? "py-2 space-y-2" : "hidden py-2 space-y-2"}
 				>
 					{dropdownItems.map((item) => (
-						<li key={item}>
-							<a
-								href="#"
-								className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-							>
-								{item}
-							</a>
-						</li>
+						<SideBarSubItem
+							title={item.title}
+							path={item.path}
+							key={item.title}
+							icon={item.icon}
+							badge={item.badge}
+							subtitle={item.subtitle}
+						/>
 					))}
 				</ul>
 			)}
@@ -69,4 +64,4 @@ function Dropdown({ mainText, dropdownItems, icon }) {
 	);
 }
 
-export default Dropdown;
+export default SideBarDropdownItem;

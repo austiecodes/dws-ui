@@ -8,6 +8,7 @@ import Dashboard from "./routes/Dashboard.jsx";
 import Machines from "./pages/Machines.jsx";
 import AllUsers from "./pages/Admin/AllUsers.jsx";
 import Toggle from "./components/Base/Toggle.jsx";
+import Features from "./pages/Admin/Features.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -21,21 +22,21 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: "gpuinfo",
-				element: <Machines/>,
+				element: <Machines />,
 			},
 			{
 				path: "allusers",
-				element : <AllUsers/>,
+				element: <AllUsers />,
 			},
-			// {
-			// 	path: "containers",
-			// 	element: <Containers/>,
-			// }
+			{
+				path: "features",
+				element: <Features />,
+			},
 		],
 	},
 	{
 		path: "/test",
-		element: < Toggle/>,
+		element: <Toggle />,
 	},
 ]);
 

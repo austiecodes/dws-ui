@@ -41,10 +41,13 @@ const Machines = () => {
 	return (
 		<div className="flex-row">
 			<div>
-				{ allMachineInfo.map((machineInfo, index) => (
-					<MachineInfoGroup machineIndex={index} machineInfo={machineInfo} key={index} />
-				))
-				}				
+				{allMachineInfo.map((machineInfo, index) => (
+					<MachineInfoGroup
+						machineIndex={index}
+						machineInfo={machineInfo}
+						key={index}
+					/>
+				))}
 			</div>
 		</div>
 	);

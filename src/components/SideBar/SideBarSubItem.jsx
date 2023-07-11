@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React from "react";
 
-const SideBarItem = ({ title, subtitle, path, icon, badge }) => {
+const SideBarSubItem = ({ title, subtitle, path, icon, badge }) => {
 	const IconStyled = icon
 		? React.cloneElement(icon, {
 				className:
@@ -12,7 +12,7 @@ const SideBarItem = ({ title, subtitle, path, icon, badge }) => {
 		<li>
 			<Link
 				to={path}
-				className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+				className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
 			>
 				{IconStyled && IconStyled}
 
@@ -32,4 +32,4 @@ const SideBarItem = ({ title, subtitle, path, icon, badge }) => {
 	);
 };
 
-export default SideBarItem;
+export default SideBarSubItem;
