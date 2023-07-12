@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import MachineInfoGroup from "../components/Machines/MachineInfoGroup";
 
 const Machines = () => {
+	const backendUrl = import.meta.env.VITE_BACKEND_URL;
 	const [allMachineInfo, setAllMachineInfo] = useState([]);
 	const intervalTime = 5000;
 
@@ -9,7 +10,7 @@ const Machines = () => {
 		const fetchData = async () => {
 			try {
 				const response = await fetch(
-					"http://192.168.120.128:10000/api/machines/info",
+					backendUrl + "api/machines/info",
 					{
 						method: "GET",
 						mode: "cors",

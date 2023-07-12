@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
 
 function Login() {
+	const backendURL = import.meta.env.VITE_BACKEND_URL;
 	let navigate = useNavigate();
 	const [isRegistering, setRegistering] = useState(false);
 	const [confirmedPassword, setConfirmedPassword] = useState("");
@@ -15,7 +16,7 @@ function Login() {
 	const handleLogin = async (event) => {
 		event.preventDefault();
 		const hashedPassword = CryptoJS.SHA256(password).toString();
-		const response = await fetch("http://127.0.0.1:9998/api/auth/login", {
+		const response = await fetch(backendURL + "api/auth/login", {
 			method: "POST",
 			mode: "cors",
 			headers: { "Content-Type": "application/json" },
@@ -35,7 +36,7 @@ function Login() {
 		const isPasswordSame = password === confirmedPassword;
 		if (isPasswordSame) {
 			const hashedPassword = CryptoJS.SHA256(password).toString();
-			const response = await fetch("http://127.0.0.1:9998/api/auth/register", {
+			const response = await fetch(backendURL + "api/auth/register", {
 				method: "POST",
 				mode: "cors",
 				headers: { "Content-Type": "application/json" },

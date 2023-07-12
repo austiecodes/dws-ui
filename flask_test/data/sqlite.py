@@ -1,5 +1,5 @@
 import sqlite3
-from .BaseDB import BaseDB
+from .basedb import BaseDB
 from .data import check_and_serialize, deserialize_data, TABEL_INFO
 
 
@@ -46,23 +46,45 @@ class SQLiteDB(BaseDB):
         except:
             return False
 
+    # def _get(
+    #     self,
+    #     table_name: str,
+    #     search_key: dict,
+    #     return_key: list = None,
+    #     limit: int = None,
+    # ):
+    #     if return_key is None:
+    #         return_key = ["*"]
+    #     if limit is None:
+    #         limit = 100
+    #     self.cursor.execute(
+    #         f"SELECT {', '.join(return_key)} FROM {table_name.lower()} WHERE {f' AND '.join([f'{k} = ?' for k in search_key.keys()])} LIMIT ?",
+    #         tuple([v for v in search_key.values()] + [limit]),
+    #     )
+    #     info = self.cursor.fetchall()
+    #     return info
     def _get(
-        self,
-        table_name: str,
-        search_key: dict,
-        return_key: list = None,
-        limit: int = None,
-    ):
+    self,
+    table_name: str,
+    search_key: dict,
+    return_key: list = None,
+    limit: int = None,
+):
         if return_key is None:
             return_key = ["*"]
         if limit is None:
             limit = 100
+        query = f"SELECT {', '.join(return_key)} FROM {table_name.lower()}"
+        if search_key:
+            query += f" WHERE {f' AND '.join([f'{k} = ?' for k in search_key.keys()])}"
+        query += " LIMIT ?"
         self.cursor.execute(
-            f"SELECT {', '.join(return_key)} FROM {table_name.lower()} WHERE {f' AND '.join([f'{k} = ?' for k in search_key.keys()])} LIMIT ?",
+            query,
             tuple([v for v in search_key.values()] + [limit]),
         )
         info = self.cursor.fetchall()
         return info
+
 
     def _update(self, table_name: str, search_key: dict, update_key: dict):
         self.cursor.execute(
@@ -126,3 +148,12 @@ class SQLiteDB(BaseDB):
 
     def update_machine(self, search_key: dict, update_key: dict) -> bool:
         return self._update("machine", search_key, update_key)
+    
+    def insert_feature(self, feature: dict) -> bool:
+        return self._insert("feature", feature)
+    
+    def get_feature(self, search_key: dict, return_key: list = None, limit: int = None) -> list:
+        return self._get("feature", search_key, return_key, limit)
+    
+    def update_feature(self, search_key: dict, update_key: dict) -> bool:
+        return self._update("feature", search_key, update_key)
