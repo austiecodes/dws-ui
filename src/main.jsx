@@ -9,6 +9,7 @@ import Machines from "./pages/Machines.jsx";
 import AllUsers from "./pages/Admin/AllUsers.jsx";
 import Toggle from "./components/Base/Toggle.jsx";
 import Features from "./pages/Admin/Features.jsx";
+import Settings from "./pages/Settings.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
 				path: "features",
 				element: <Features />,
 			},
+			{
+				path: "settings",
+				element: <Settings />,
+			}
 		],
 	},
 	{

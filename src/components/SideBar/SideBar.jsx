@@ -1,6 +1,7 @@
 import { BsGpuCard } from "react-icons/bs";
 import { BiUser, BiLogoDocker, BiToggleRight } from "react-icons/bi";
 import { MdAdminPanelSettings } from "react-icons/md";
+import { AiFillSetting } from "react-icons/ai";
 import SideBarItem from "./SidebarItem";
 import SideBarDropdownItem from "./SideBarDropdownItem";
 
@@ -42,6 +43,11 @@ function Sidebar() {
 							title="Admin"
 							icon={<MdAdminPanelSettings />}
 							dropdownItems={dropdownItems}
+						/>
+						<SideBarItem
+							title="Settings"
+							path="/dashboard/settings"
+							icon={<AiFillSetting />}
 						/>
 					</ul>
 				</div>
