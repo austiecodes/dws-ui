@@ -10,6 +10,7 @@ import AllUsers from "./pages/Admin/AllUsers.jsx";
 import Toggle from "./components/Base/Toggle.jsx";
 import Features from "./pages/Admin/Features.jsx";
 import Settings from "./pages/Settings.jsx";
+import Containers from "./pages/Containers.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
 			{
 				path: "gpuinfo",
 				element: <Machines />,
+			},
+			{
+				path: "containers",
+				element: <Containers />,
 			},
 			{
 				path: "allusers",

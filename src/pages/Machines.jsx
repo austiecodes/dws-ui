@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
 import MachineInfoGroup from "../components/Machines/MachineInfoGroup";
+import MachineInfoCard from "../components/Machines/MachineInfoCard";
 
 const Machines = () => {
 	const backendUrl = import.meta.env.VITE_BACKEND_URL;
 	const [allMachineInfo, setAllMachineInfo] = useState([]);
 	const intervalTime = 5000;
+	const myGpuInfo = {
+		utilization: 75,
+		memory_used: 4,
+		memory_total: 8
+	  };
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch(
+				const response = await fetch (
 					backendUrl + "api/machines/info",
 					{
 						method: "GET",
@@ -26,14 +32,13 @@ const Machines = () => {
 				}
 				const data = await response.json();
 				setAllMachineInfo(data);
-				console.log(data);
 			} catch (error) {
 				console.error(error);
 			}
 		};
 		fetchData();
-		const interval = setInterval(() => {
-			fetchData();
+
+		const interval = setInterval(() => {fetchData();
 		}, intervalTime);
 
 		return () => clearInterval(interval);
@@ -42,13 +47,14 @@ const Machines = () => {
 	return (
 		<div className="flex-row">
 			<div>
-				{allMachineInfo.map((machineInfo, index) => (
+				{/* {allMachineInfo.length > 0 && allMachineInfo.map((machineInfo, index) => (
 					<MachineInfoGroup
 						machineIndex={index}
 						machineInfo={machineInfo}
 						key={index}
 					/>
-				))}
+				))} */}
+				<MachineInfoCard machineIndex={0} gpuIndex={0} gpuInfo={myGpuInfo}/>
 			</div>
 		</div>
 	);
