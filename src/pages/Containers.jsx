@@ -1,24 +1,36 @@
-import { useEffect } from "react";
+import { useEffect, useState} from "react";
 import ContainerCard from "../components/Containers/ContainerCard";
-import io from "socket.io-client";
 
-const backendURL = import.meta.env.TEST_URL;
-export const socket = io(backendURL);
 
 const Containers = () => {
-	const [isConnected, setIsConnected] = useState(socket.connected);
+	const [isConnected, setIsConnected] = useState(false);
+    const [containers, setContainers] = useState([]);
 
-	useEffect(() => {
-		function onConnect() {
-			setIsConnected(true);
-		}
+    useEffect(() => {
+        const backendURL = "ws://127.0.0.1:8080/ws";
+        const socket = new WebSocket(backendURL);
 
-		socket.on("connect", onConnect);
-	
-		return () => {
-			socket.off("connect", onConnect);
-		};
-	}, []);
+        socket.onopen = () => {
+            setIsConnected(true);
+            console.log("Connected to server");
+        };
+
+        socket.onmessage = (event) => {
+            const containerInfo = JSON.parse(event.data);
+            console.log("Message received", containerInfo);
+            // Append new container info to the existing list
+            setContainers(prevContainers => [...prevContainers, containerInfo]);
+        };
+
+        socket.onerror = (event) => {
+            // Logging the error message
+            console.error("WebSocket error observed:", event.message);
+        };
+
+        return () => {
+            socket.close();
+        };
+    }, []);
 
 	return (
 		<div className="px-4 pt-10">
